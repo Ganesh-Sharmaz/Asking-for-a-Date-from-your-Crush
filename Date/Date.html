@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date?</title>
+    <link rel="stylesheet" href="style.css">
+
+    
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@1,300&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bellota Text', sans-serif;
+    
+}
+body, html{
+    width: 100%;
+    height: 100vh;
+    background-image: url("https://img.freepik.com/free-vector/cloud-background-vector-cute-desktop-wallpaper_53876-136885.jpg?w=826&t=st=1704789857~exp=1704790457~hmac=381926ab355f58892a476af4dd9c1b104192572bd7b1a38ac49528094d2ec6ce");
+
+    background-size:cover;
+}
+
+.confirmation{
+    display: none;
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    /* padding-top: 50px; */
+}
+
+.confirmation h1{
+    font-style: bolder;
+    font-size: 50px;
+    font-weight: 700;
+    text-shadow: 0px 3px 6px rgb(147, 77, 77);
+    line-height: 90px;
+}
+
+.fix-gif{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 200px;
+    
+
+}
+
+.fix-gifimg{
+    border-radius: 10px;
+    width: 384px;
+    height: 216px;
+    background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
+    background-size: cover; 
+}
+
+.container h1{
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-style: bolder;
+    font-size: 50px;
+    font-weight: 700;
+    text-shadow: 0px 3px 6px rgb(147, 77, 77);
+}
+
+#fix{
+    margin-top: 30px;
+        border: none;
+        width: 400px;
+        height: 50px;
+        font-size: 30px;
+        border-radius: 10px;
+        background: none;
+        backdrop-filter: blur(5px);
+        border: 1px solid black;
+        font-weight: 550;
+}
+.container{
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    
+}
+
+.gif{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 300px;
+    
+
+}
+
+.gifimg{
+    border-radius: 10px;
+    width: 384px;
+    height: 254px;
+    background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
+    background-size: cover; 
+}
+
+.answer-box{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: black; */
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    height: 80px;
+    gap: 50px;
+}
+
+.answer{
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;
+    background: none;
+    backdrop-filter: blur(5px);
+    border: 1px solid black;
+    font-weight: 550;
+    
+}
+.answer:hover{
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.449);
+}
+
+@media screen and (max-width: 600px){
+    .container{
+        width: 100%;
+    }
+    .container h1{
+        margin-top: 20px;
+        padding: 8px;
+        font-size: 35px;
+    }
+    .answer{
+        font-size: 20px;
+        padding: 5px;
+    }
+    .gifimg{
+        border-radius: 10px;
+        width: 300px;
+        height: 198px;
+        background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
+        background-size: cover; 
+    }
+    .fix-gif{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100%;
+        height: 200px;
+        
+    
+    }
+    
+    .fix-gifimg{
+        border-radius: 10px;
+        width: 300px;
+        height: 168px;
+        background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
+        background-size: cover; 
+    }
+
+    #fix{
+        margin-top: 30px;
+            border: none;
+            width: 250px;
+            height: 50px;
+            font-size: 30px;
+            border-radius: 10px;
+            background: none;
+            backdrop-filter: blur(5px);
+            border: 1px solid black;
+            font-weight: 550;
+    }
+
+    .confirmation{
+        display: none;
+        width: 100%;
+        height: 500px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
+}
+
+    
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question">
+            <h1>Will you go on a date with me?</h1>
+        </div>
+        <div class="gif">
+            <div class="gifimg"></div>
+        </div>
+        <div class="answer-box">
+                <button class="answer" id="yes">Yes!!!</button>
+                <button class="answer" id="no">No</button>
+        </div>
+        
+    </div>
+
+    <div class="confirmation">
+        <h1>Yayyyyyyyy!!! Finally</h1>
+            <div class="question">
+                <div class="fix-gif">
+                    <div class="fix-gifimg"></div>
+                </div>
+                <!-- <a href="https://wa.me/+918595790116?text='Chalo date pr chalein!!!!!' ">
+                </a> -->
+                    <button class="answer" id="fix">Let's Fix a date</button>
+                
+            </div>
+    </div>
+
+    </div>
+
+    <script>
+        const yes = document.querySelector("#yes");
+const no = document.querySelector("#no");
+const confirmation = document.querySelector(".confirmation");
+const container = document.querySelector(".container");
+
+yesAnswerMethod = () => {
+    container.style.display = 'none'
+    confirmation.style.display = 'block'
+}
+
+noAnswerMethod = () => {
+    no.style.position = 'absolute'
+
+    xPosition = Math.floor(Math.random() * container.clientWidth)
+    yPosition = Math.floor(Math.random() * container.clientHeight)
+
+    no.style.top = `${yPosition}px`
+    no.style.left = `${xPosition}px`
+
+}
+
+no.addEventListener('click', noAnswerMethod)
+yes.addEventListener('click', yesAnswerMethod)
+
+document.getElementById("fix").addEventListener("click", function(){
+    window.location= "https://wa.me/+918802130983?text=Chalo date pr chalein !!!!! ";
+}, false);
+    </script>
+    
+</body>
+</html>
