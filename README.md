@@ -1,6 +1,9 @@
-# Asking for a Date with a crush using an automated message sent on WhatsApp 
+# Asking for a Date with a crush using an automated message sent on WhatsApp 💘
 
 This is a repo for making a Website using HTML, CSS, and JavaScript that allows users to ask their crush for a Date! and a custom message is sent to your crush automatically using JavaScript.
+
+# Disclaimer ⚠️
+We cannot guarantee that this landing page will result in a successful date or relationship. Use at your own risk (but hey, at least you tried, right?).
 
 ## Installation
 
