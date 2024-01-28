@@ -4,7 +4,14 @@ This is a repo for making a Website using HTML, CSS, and JavaScript that allows 
 
 ## Installation
 
-Just download the Date file in your system and open the Date.html file in your browser
+Download the Date folder in your system and open the Date.html file in your browser
+
+## Configurations to the code
+
+Open the Date.html file in VScode and enter your own number in the code otherwise it will direct your crush's message to me x)
+
+![Date6](https://github.com/Ganesh-Sharmaz/Date/assets/151487165/6072ce08-9e9a-4d60-8adc-1eb5e86ac17c)
+
 
 ## How it looks
 
@@ -13,3 +20,5 @@ Just download the Date file in your system and open the Date.html file in your b
 ![Date2](https://github.com/Ganesh-Sharmaz/Date/assets/151487165/bb595cc7-09ac-4591-889c-649a6a87b568)
 
 ![Date3](https://github.com/Ganesh-Sharmaz/Date/assets/151487165/b42335c2-eefd-46db-958a-a0deea2550be)
+
+
