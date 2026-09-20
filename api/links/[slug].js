@@ -21,10 +21,11 @@ function cleanUpdate(body) {
     if (typeof input[field] === 'string') result[field] = input[field].trim().slice(0, field === 'question' || field === 'finalText' ? 180 : 60);
   }
 
-  if (result.dialCode) result.dialCode = result.dialCode.replace(/\s/g, '');
-  if (result.phone) result.phone = result.phone.replace(/\D/g, '');
-  if (result.dialCode && !/^\+?\d{1,4}$/.test(result.dialCode)) throw new Error('Enter a valid country dial code.');
+  if (result.dialCode && result.dialCode.startsWith('+')) result.dialCode = result.dialCode.slice(1);
+  if (result.phone && !/^\d{6,15}$/.test(result.phone)) throw new Error('WhatsApp number must contain digits only and be 6–15 digits long.');
+  if (result.dialCode && !/^\d{1,4}$/.test(result.dialCode)) throw new Error('Country dial code must contain digits only.');
   if (result.phone && !/^\d{6,15}$/.test(result.phone)) throw new Error('Enter a valid phone number.');
+  if (result.dialCode) result.dialCode = `+${result.dialCode}`;
   if (!Object.keys(result).length) throw new Error('Add at least one field to update.');
   return result;
 }

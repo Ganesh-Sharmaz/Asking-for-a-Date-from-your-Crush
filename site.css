@@ -81,7 +81,10 @@ h1, h2 { font-family: 'Bellota Text', Georgia, serif; font-style: italic; }
 .field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: .85rem; padding: .8rem .9rem; background: rgba(255,255,255,.8); color: var(--ink); font: .92rem Poppins, sans-serif; outline: none; }
 .field textarea { min-height: 5rem; resize: vertical; }
 .field input:focus, .field textarea:focus { border-color: #e36b95; box-shadow: 0 0 0 4px rgba(227,107,149,.13); }
+.field input:invalid, .field textarea:invalid { border-color: rgba(178,68,92,.45); }
+.field-error { display: block; color: #b2445c; font-size: .72rem; line-height: 1.4; }
 .form-actions { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.button:disabled { cursor: not-allowed; opacity: .48; filter: grayscale(.2); transform: none; box-shadow: none; }
 .status { min-height: 1.4rem; margin-top: .8rem; color: var(--muted); font-size: .86rem; }
 .status.error { color: #b2445c; }
 .success-box { display: none; margin-top: 1rem; padding: 1rem; border-radius: 1rem; background: #edfff6; color: #276d53; }
@@ -93,6 +96,7 @@ h1, h2 { font-family: 'Bellota Text', Georgia, serif; font-style: italic; }
 .link-card h3 { overflow-wrap: anywhere; font: 700 1rem Poppins, sans-serif; }
 .link-card p { margin: .4rem 0 .8rem; color: var(--muted); font-size: .8rem; }
 .link-card-actions { display: flex; flex-wrap: wrap; gap: .45rem; }
+.paid-plan-note { margin-top: 1rem; padding: 1rem; border: 1px solid rgba(227,107,149,.25); border-radius: 1rem; background: linear-gradient(135deg, #fff1f6, #fff9df); color: var(--pink-dark); font-size: .82rem; line-height: 1.55; }
 .mini-button { border: 1px solid var(--line); border-radius: 999px; padding: .45rem .7rem; background: #fff; color: var(--pink-dark); font: 700 .76rem Poppins, sans-serif; cursor: pointer; }
 .date-page { display: grid; place-items: center; min-height: 100vh; padding: 1rem; }
 .date-card { width: min(100%, 620px); padding: clamp(1.4rem, 5vw, 3rem); border: 1px solid rgba(255,255,255,.8); border-radius: 2rem; background: rgba(255,255,255,.68); box-shadow: var(--shadow); text-align: center; backdrop-filter: blur(8px); }
@@ -108,6 +112,31 @@ h1, h2 { font-family: 'Bellota Text', Georgia, serif; font-style: italic; }
 .final-state.visible { display: block; animation: confirmation-in .4s ease both; }
 .final-state h2 { max-width: 12ch; margin: .5rem auto 1rem; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.08; }
 .loading { color: var(--muted); text-align: center; }
+.main-page { min-height: 100dvh; width: 100%; display: grid; place-items: center; padding: clamp(1rem, 4vw, 3rem); overflow: hidden; background-image: url("https://img.freepik.com/free-vector/cloud-background-vector-cute-desktop-wallpaper_53876-136885.jpg?w=826&t=st=1704789857~exp=1704790457~hmac=381926ab355f58892a476af4dd9c1b104192572bd7b1a38ac49528094d2ec6ce"); background-size: cover; }
+.main-page .container, .main-page .confirmation { position: relative; left: auto; top: auto; transform: none; width: min(100%, 620px); height: auto; margin: auto; padding: clamp(1.25rem, 4vw, 2.5rem); border: 1px solid rgba(255,255,255,.58); border-radius: 2rem; background: linear-gradient(145deg, rgba(255,255,255,.3), rgba(255,241,248,.16)); box-shadow: 0 24px 60px rgba(76,92,125,.18), inset 0 1px 0 rgba(255,255,255,.55); backdrop-filter: blur(5px); text-align: center; }
+.main-page .container { display: flex; flex-direction: column; align-items: center; gap: clamp(.75rem, 2.5vw, 1.5rem); }
+.main-page .container h1, .main-page .confirmation h1 { max-width: 12ch; margin: 0; color: #321d2b; font: italic 700 clamp(2.2rem, 5vw, 4rem)/1.05 'Bellota Text', serif; letter-spacing: -.025em; text-shadow: 0 4px 10px rgba(255,255,255,.72), 0 5px 12px rgba(147,77,77,.28); }
+.main-page .gif, .main-page .fix-gif { width: 100%; height: auto; min-height: 0; margin: 0; }
+.main-page .gifimg, .main-page .fix-gifimg { width: min(100%, 384px); height: auto; aspect-ratio: 384 / 254; margin: 0 auto; border-radius: 18px; background-position: center; background-size: cover; box-shadow: 0 16px 32px rgba(56,76,103,.25), 0 0 0 5px rgba(255,255,255,.2); }
+.main-page .gifimg { background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif"); }
+.main-page .fix-gifimg { aspect-ratio: 384 / 216; background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif"); }
+.main-page .answer-box { width: 100%; height: auto; display: flex; justify-content: center; gap: clamp(1.25rem, 8vw, 5rem); padding: .25rem 0; margin: 0; }
+.main-page .answer, .main-page #fix { position: relative; width: clamp(6.5rem, 22vw, 8.5rem); min-height: 3.5rem; height: auto; padding: .45rem .8rem .45rem 2rem; border: 1px solid rgba(255,255,255,.82); border-radius: 999px; background: linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,231,241,.55)); color: #4b263a; font: italic 550 clamp(1.35rem, 3vw, 2rem)/1 'Bellota Text', serif; cursor: pointer; box-shadow: 0 8px 0 rgba(146,85,111,.2), 0 12px 22px rgba(76,92,125,.16), inset 0 1px 0 rgba(255,255,255,.9); transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.main-page #yes { background: linear-gradient(145deg, #fffdf2, #ffd4e5); }
+.main-page #no { background: linear-gradient(145deg, #f5fbff, #d8edff); }
+.main-page #fix { width: min(100%, 18rem); margin-top: 1rem; background: linear-gradient(145deg, #fffdf2, #ffc9df); }
+.main-page #yes::before, .main-page #no::before, .main-page #fix::before { position: absolute; top: 50%; left: .7rem; transform: translateY(-50%); font-family: system-ui, sans-serif; font-size: .9em; }
+.main-page #yes::before, .main-page #fix::before { content: "\2661"; }
+.main-page #no::before { content: "\2601"; }
+.main-page .answer:hover, .main-page .answer:focus-visible, .main-page #fix:hover, .main-page #fix:focus-visible { background: linear-gradient(145deg, #fff, #ffe2ed); box-shadow: 0 11px 0 rgba(146,85,111,.17), 0 18px 26px rgba(76,92,125,.22), inset 0 1px 0 #fff; transform: translateY(-4px) rotate(-1deg); }
+.main-page .answer:active, .main-page #fix:active { box-shadow: 0 3px 0 rgba(146,85,111,.18), 0 7px 12px rgba(76,92,125,.16); transform: translateY(4px) scale(.97); }
+.main-page #no { will-change: top, left; transition: transform .18s ease, box-shadow .18s ease; }
+.main-page .confirmation { display: none; animation: confirmation-in .42s ease both; }
+.main-page [hidden] { display: none !important; }
+.main-page .confirmation:not([hidden]) { display: block; }
+.main-page .confirmation .question { display: grid; justify-items: center; }
+.main-page .confirmation h1 { margin-bottom: 1rem; }
+@media (max-width: 600px) { .main-page { padding: 1.25rem 1rem; } .main-page .container, .main-page .confirmation { width: 100%; padding: 1.25rem .9rem 1.5rem; border-radius: 1.5rem; } .main-page .container h1, .main-page .confirmation h1 { max-width: 13ch; font-size: clamp(2rem, 10vw, 3rem); } .main-page .gifimg, .main-page .fix-gifimg { width: min(100%, 340px); } .main-page .answer-box { gap: clamp(.75rem, 8vw, 2rem); } .main-page .answer, .main-page #fix { min-height: 3.25rem; font-size: clamp(1.2rem, 6vw, 1.65rem); } }
 .base-promo { position: fixed; z-index: 20; right: 1rem; bottom: 1rem; display: flex; align-items: center; gap: .8rem; max-width: 360px; padding: .8rem 1rem; border: 1px solid rgba(255,255,255,.8); border-radius: 1rem; background: rgba(255,255,255,.84); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
 .base-promo p { margin: 0; font-size: .78rem; line-height: 1.35; }
 .base-promo button { border: 0; background: none; color: var(--muted); cursor: pointer; }

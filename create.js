@@ -7,7 +7,10 @@ const cancelEdit = document.querySelector('#cancel-edit');
 const successBox = document.querySelector('#success-box');
 const createdLink = document.querySelector('#created-link');
 const copyLink = document.querySelector('#copy-link');
+const paidPlanNote = document.querySelector('#paid-plan-note');
 let editingSlug = null;
+let canCreateLinks = true;
+const requiredFields = ['question', 'yesText', 'noText', 'finalText', 'finalButtonText', 'dialCode', 'phone'];
 
 function setStatus(element, message, error = false) {
   element.textContent = message;
@@ -18,14 +21,53 @@ function readForm() {
   return Object.fromEntries(new FormData(form).entries());
 }
 
+function validateForm(showErrors = false) {
+  const values = readForm();
+  const errors = [];
+  const labels = {
+    question: 'The question',
+    yesText: 'Yes button',
+    noText: 'No button',
+    finalText: 'After they say yes',
+    finalButtonText: 'Final button text',
+    dialCode: 'Your country dial code',
+    phone: 'Your WhatsApp number'
+  };
+
+  for (const name of requiredFields) {
+    const field = form.elements.namedItem(name);
+    const wrapper = field.closest('.field');
+    let message = '';
+    if (!values[name]?.trim()) message = `${labels[name]} is required.`;
+    if (name === 'dialCode' && values[name] && !/^\d{1,4}$/.test(values[name])) message = 'Use digits only for the country dial code (example: 91).';
+    if (name === 'phone' && values[name] && !/^\d{6,15}$/.test(values[name])) message = 'Use 6–15 digits only for your WhatsApp number.';
+    field.setCustomValidity(message);
+    let error = wrapper.querySelector('.field-error');
+    if (!error) {
+      error = document.createElement('small');
+      error.className = 'field-error';
+      wrapper.append(error);
+    }
+    error.textContent = showErrors ? message : '';
+    error.hidden = !showErrors || !message;
+    if (message) errors.push(labels[name]);
+  }
+
+  saveButton.disabled = (!canCreateLinks && !editingSlug) || errors.length > 0;
+  if (errors.length) setStatus(formStatus, `${showErrors ? 'Please fix' : 'Required fields'}: ${errors.join(', ')}.`);
+  else setStatus(formStatus, '');
+  return errors.length === 0;
+}
+
 function fillForm(link) {
   for (const [key, value] of Object.entries(link)) {
     const field = form.elements.namedItem(key);
-    if (field) field.value = value || '';
+    if (field) field.value = key === 'dialCode' ? String(value || '').replace(/^\+/, '') : value || '';
   }
   editingSlug = link.slug;
   saveButton.textContent = 'Save changes ✨';
   cancelEdit.hidden = false;
+  validateForm(false);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -36,15 +78,18 @@ function resetForm(hideSuccess = true) {
   cancelEdit.hidden = true;
   if (hideSuccess) successBox.classList.remove('visible');
   setStatus(formStatus, '');
+  validateForm(false);
 }
 
 function renderLinks(links, limit) {
   linkList.innerHTML = '';
   if (!links.length) {
     setStatus(listStatus, `No links yet. You can create ${limit} free links.`);
+    paidPlanNote.hidden = true;
     return;
   }
   setStatus(listStatus, `${links.length} of ${limit} free links used.`);
+  paidPlanNote.hidden = links.length < limit;
   for (const link of links) {
     const card = document.createElement('article');
     card.className = 'link-card';
@@ -67,7 +112,8 @@ async function loadLinks() {
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || 'Could not load your links.');
     renderLinks(data.links, data.limit);
-    if (!data.canCreate && !editingSlug) saveButton.disabled = true;
+    canCreateLinks = data.canCreate;
+    validateForm(false);
   } catch (error) {
     setStatus(listStatus, error.message, true);
   }
@@ -75,6 +121,7 @@ async function loadLinks() {
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
+  if (!validateForm(true)) return;
   const wasEditing = Boolean(editingSlug);
   saveButton.disabled = true;
   setStatus(formStatus, editingSlug ? 'Saving your changes…' : 'Creating your little link…');
@@ -95,7 +142,7 @@ form.addEventListener('submit', async (event) => {
   } catch (error) {
     setStatus(formStatus, error.message, true);
   } finally {
-    saveButton.disabled = false;
+    validateForm(false);
   }
 });
 
@@ -127,4 +174,13 @@ linkList.addEventListener('click', async (event) => {
 });
 
 fetch('/api/visitor', { credentials: 'same-origin' }).catch(() => {});
+for (const name of ['dialCode', 'phone']) {
+  form.elements.namedItem(name).addEventListener('input', (event) => {
+    event.target.value = event.target.value.replace(/\D/g, '');
+    validateForm(false);
+  });
+}
+form.addEventListener('input', () => validateForm(false));
+form.addEventListener('blur', () => validateForm(true), true);
+validateForm(false);
 loadLinks();

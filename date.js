@@ -1,74 +1,122 @@
-const card = document.querySelector('#date-card');
 const slug = new URLSearchParams(window.location.search).get('slug') || window.location.pathname.slice(1);
+const container = document.querySelector('#date-container');
+const confirmation = document.querySelector('#date-confirmation');
+const loading = document.querySelector('#date-loading');
+const question = document.querySelector('#date-question');
+const yes = document.querySelector('#yes');
+const no = document.querySelector('#no');
+const finalText = document.querySelector('#final-text');
+const fix = document.querySelector('#fix');
+let noIsEscaping = false;
+let lastNoMove = 0;
+let noAnimationFrame = null;
 
 function showError(message) {
-  card.innerHTML = `<p class="eyebrow">Oops</p><h1>This little link is missing.</h1><p class="date-message">${message}</p><a class="button" href="/">Go home</a>`;
+  loading.textContent = message;
 }
 
-function render(link) {
-  card.innerHTML = '';
-  const eyebrow = document.createElement('p');
-  eyebrow.className = 'eyebrow';
-  eyebrow.textContent = link.name ? `A question from ${link.name}` : 'A tiny question for you';
-  const title = document.createElement('h1');
-  title.textContent = link.question;
-  const art = document.createElement('div');
-  art.className = 'date-gif';
-  art.setAttribute('role', 'img');
-  art.setAttribute('aria-label', 'A cute bear waiting for a reply');
-  const actions = document.createElement('div');
-  actions.className = 'date-actions';
-  const yes = document.createElement('button');
-  yes.className = 'button';
-  yes.textContent = link.yesText;
-  const no = document.createElement('button');
-  no.className = 'button no-button';
-  no.textContent = link.noText;
-  actions.append(yes, no);
-  const final = document.createElement('div');
-  final.className = 'final-state';
-  const finalArt = document.createElement('div');
-  finalArt.className = 'final-gif';
-  finalArt.setAttribute('role', 'img');
-  finalArt.setAttribute('aria-label', 'A celebratory dessert animation');
-  const finalTitle = document.createElement('h2');
-  finalTitle.textContent = link.finalText;
-  const finalButton = document.createElement('a');
-  finalButton.className = 'button';
-  finalButton.textContent = link.finalButtonText;
-  finalButton.href = `https://wa.me/${link.dialCode.replace(/\D/g, '')}${link.phone}?text=${encodeURIComponent(link.finalText)}`;
-  final.append(finalArt, finalTitle, finalButton);
-  card.append(eyebrow, title, art, actions, final);
+function moveNoButton(pointerX = null, pointerY = null, snap = false) {
+  no.style.position = 'absolute';
+  no.style.zIndex = '20';
+  const containerRect = container.getBoundingClientRect();
+  const answerBox = container.querySelector('.answer-box');
+  const answerBoxRect = answerBox.getBoundingClientRect();
+  const maxX = Math.max(0, container.clientWidth - no.offsetWidth);
+  const containerMaxY = Math.max(0, container.clientHeight - no.offsetHeight);
+  const answerZoneTop = Math.max(0, answerBoxRect.top - containerRect.top - 18);
+  const answerZoneBottom = Math.min(containerMaxY, answerBoxRect.bottom - containerRect.top - no.offsetHeight + 18);
+  const minY = Math.min(answerZoneTop, answerZoneBottom);
+  const maxY = Math.max(minY, answerZoneBottom);
+  let xPosition = 0;
+  let yPosition = minY;
 
-  let escaped = false;
-  let frame = null;
-  const moveNo = (event) => {
-    escaped = true;
-    no.style.position = 'absolute';
-    const area = actions.getBoundingClientRect();
-    const x = Math.random() * Math.max(0, area.width - no.offsetWidth);
-    const y = Math.random() * Math.max(0, area.height - no.offsetHeight);
-    no.style.left = `${x}px`;
-    no.style.top = `${y}px`;
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const candidateX = Math.floor(Math.random() * (maxX + 1));
+    const candidateY = minY + Math.floor(Math.random() * (maxY - minY + 1));
+    const candidateCenterX = containerRect.left + candidateX + no.offsetWidth / 2;
+    const candidateCenterY = containerRect.top + candidateY + no.offsetHeight / 2;
+    const distanceFromPointer = pointerX === null ? Infinity : Math.hypot(candidateCenterX - pointerX, candidateCenterY - pointerY);
+    xPosition = candidateX;
+    yPosition = candidateY;
+    if (distanceFromPointer > 140) break;
+  }
+
+  if (snap) {
+    no.style.left = `${xPosition}px`;
+    no.style.top = `${yPosition}px`;
+    return;
+  }
+
+  const startX = Number.parseFloat(no.style.left) || no.offsetLeft || 0;
+  const startY = Number.parseFloat(no.style.top) || no.offsetTop || minY;
+  const isArched = Math.random() > 0.45;
+  const midpointX = (startX + xPosition) / 2;
+  const midpointY = (startY + yPosition) / 2;
+  const direction = Math.random() > 0.5 ? 1 : -1;
+  const curveAmount = isArched ? (70 + Math.random() * 90) * direction : 0;
+  const controlX = Math.min(maxX, Math.max(0, midpointX - curveAmount));
+  const controlY = Math.min(maxY, Math.max(minY, midpointY + curveAmount * 0.55));
+  const duration = 650 + Math.random() * 350;
+  const startTime = performance.now();
+
+  if (noAnimationFrame !== null) cancelAnimationFrame(noAnimationFrame);
+  const animate = (currentTime) => {
+    const progress = Math.min(1, (currentTime - startTime) / duration);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    const inverse = 1 - easedProgress;
+    const currentX = inverse * inverse * startX + 2 * inverse * easedProgress * controlX + easedProgress * easedProgress * xPosition;
+    const currentY = inverse * inverse * startY + 2 * inverse * easedProgress * controlY + easedProgress * easedProgress * yPosition;
+    no.style.left = `${currentX}px`;
+    no.style.top = `${currentY}px`;
+    if (progress < 1) noAnimationFrame = requestAnimationFrame(animate);
+    else noAnimationFrame = null;
   };
-  no.addEventListener('click', moveNo);
-  no.addEventListener('pointerenter', (event) => { if (escaped) moveNo(event); });
-  yes.addEventListener('click', () => {
-    eyebrow.style.display = 'none';
-    title.style.display = 'none';
-    art.style.display = 'none';
-    actions.style.display = 'none';
-    final.classList.add('visible');
-  });
+  noAnimationFrame = requestAnimationFrame(animate);
+}
+
+function showFinal(link) {
+  container.hidden = true;
+  confirmation.hidden = false;
+  finalText.textContent = link.finalText;
+  fix.textContent = link.finalButtonText;
+  fix.onclick = () => {
+    window.location.href = `https://wa.me/${link.dialCode.replace(/\D/g, '')}${link.phone}?text=${encodeURIComponent(link.finalText)}`;
+  };
 }
 
 async function load() {
-  if (!slug) return showError('The address does not include a date page.');
+  if (!slug) return showError('This date link is missing.');
   try {
     const response = await fetch(`/api/links/${encodeURIComponent(slug)}`);
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'This page may have been deleted.');
-    render(data.link);
+    if (!response.ok) throw new Error(data.error || 'This date link does not exist.');
+    const link = data.link;
+    question.textContent = link.question;
+    yes.textContent = link.yesText;
+    no.textContent = link.noText;
+    container.hidden = false;
+    loading.hidden = true;
+
+    yes.addEventListener('click', () => showFinal(link));
+    no.addEventListener('click', (event) => {
+      noIsEscaping = true;
+      moveNoButton(event.clientX, event.clientY, true);
+    });
+    no.addEventListener('pointerenter', (event) => {
+      if (noIsEscaping) {
+        lastNoMove = Date.now();
+        moveNoButton(event.clientX, event.clientY);
+      }
+    });
+    document.addEventListener('pointermove', (event) => {
+      if (!noIsEscaping || Date.now() - lastNoMove < 280) return;
+      const rect = no.getBoundingClientRect();
+      const distance = Math.hypot(event.clientX - (rect.left + rect.width / 2), event.clientY - (rect.top + rect.height / 2));
+      if (distance < 150) {
+        lastNoMove = Date.now();
+        moveNoButton(event.clientX, event.clientY);
+      }
+    });
   } catch (error) {
     showError(error.message);
   }

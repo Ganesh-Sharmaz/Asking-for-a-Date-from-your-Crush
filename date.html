@@ -8,8 +8,19 @@
   <link rel="stylesheet" href="/site.css">
   <title>A little question for you 💌</title>
 </head>
-<body>
-  <main class="date-page"><section class="date-card" id="date-card"><p class="loading">Loading a little question…</p></section></main>
+<body class="main-page">
+  <main>
+    <div class="container" id="date-container" hidden>
+      <div class="question"><h1 id="date-question"></h1></div>
+      <div class="gif"><div class="gifimg"></div></div>
+      <div class="answer-box"><button class="answer" id="yes" type="button"></button><button class="answer" id="no" type="button"></button></div>
+    </div>
+    <div class="confirmation" id="date-confirmation" hidden>
+      <h1 id="final-text"></h1>
+      <div class="question"><div class="fix-gif"><div class="fix-gifimg"></div></div><button class="answer" id="fix" type="button"></button></div>
+    </div>
+    <p class="loading" id="date-loading">Loading a little question…</p>
+  </main>
   <script type="module" src="/date.js"></script>
 </body>
 </html>

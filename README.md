@@ -5,13 +5,31 @@ This is a repo for making a Website using HTML, CSS, and JavaScript that allows 
 # Disclaimer ⚠️
 We cannot guarantee that this landing page will result in a successful date or relationship. Use at your own risk (but hey, at least you tried, right?).
 
-## Installation
+## Use it without touching code
 
-Clone or download this repository and open `index.html` in your browser.
+You do not need to edit `index.html`, change JavaScript, or replace a phone number manually anymore.
 
-## Configurations to the code
+1. Open the live [Ask Your Crush landing page](https://asking-for-a-date-from-your-crush.vercel.app/landing).
+2. Choose **Create yours**.
+3. Fill in your own question, button labels, celebration message, and **your WhatsApp number**.
+4. Click **Save & create link**.
+5. Copy your unique `/d-...` link and send it to your crush.
 
-Open `index.html` in VS Code and enter your own number in the code. Otherwise, the message may be sent to the maintainer's number.
+The home page at [asking-for-a-date-from-your-crush.vercel.app](https://asking-for-a-date-from-your-crush.vercel.app/) is still the original playable example. Your custom pages are created from the builder and can be edited or deleted from the same browser. Two links are free; additional links will be part of a paid plan currently under development.
+
+## Installation for developers
+
+Clone the repository and install the server dependency:
+
+```bash
+npm install
+```
+
+Run it as a Vercel project, configure the Firebase Admin variables from `.env.example`, and deploy the Firestore rules before using the builder. Opening `index.html` directly is only useful for viewing the static example; the creator dashboard and generated links need the Vercel API and Firestore.
+
+## Customize everything yourself
+
+If you are a developer and want full control, edit the HTML, CSS, and JavaScript directly. The original example lives in `index.html`; the landing page, builder, generated page, API routes, and styling are separated into their own files. Please keep the server-only Firebase private key out of client-side code and out of Git.
 
 ## Contributing
 

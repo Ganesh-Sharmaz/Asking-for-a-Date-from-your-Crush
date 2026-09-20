@@ -24,15 +24,15 @@
               <div class="field"><label for="noText">No button</label><input id="noText" name="noText" maxlength="40" value="No" required></div>
               <div class="field full"><label for="finalText">After they say yes</label><textarea id="finalText" name="finalText" maxlength="180" required>Yayyyyyyyy!!! Finally</textarea><small>This is the happy reveal after the Yes button.</small></div>
               <div class="field full"><label for="finalButtonText">Final button text</label><input id="finalButtonText" name="finalButtonText" maxlength="50" value="Let's Fix a date" required></div>
-              <div class="field"><label for="dialCode">Country dial code</label><input id="dialCode" name="dialCode" maxlength="5" value="+91" required><small>Example: +91, +1, +44.</small></div>
-              <div class="field"><label for="phone">WhatsApp number</label><input id="phone" name="phone" inputmode="numeric" maxlength="15" placeholder="8802130983" required><small>Digits only, without the dial code.</small></div>
+              <div class="field"><label for="dialCode">Your country dial code</label><input id="dialCode" name="dialCode" inputmode="numeric" pattern="[0-9]{1,4}" maxlength="4" value="91" required><small>Digits only. Example: 91, 1, or 44. We add the + automatically.</small></div>
+              <div class="field"><label for="phone">Your WhatsApp number</label><input id="phone" name="phone" inputmode="numeric" pattern="[0-9]{6,15}" maxlength="15" placeholder="8802130983" autocomplete="tel" required><small>Enter your own WhatsApp number—the number that should receive the final date message, not your crush’s number. Digits only.</small></div>
             </div>
             <div class="form-actions"><button class="button" id="save-button" type="submit">Save & create link ✨</button><button class="button secondary" id="cancel-edit" type="button" hidden>Cancel edit</button></div>
             <p class="status" id="form-status" role="status"></p>
             <div class="success-box" id="success-box"><strong>Your page is ready 💌</strong><br><a id="created-link" href="#"></a><br><button class="mini-button" id="copy-link" type="button">Copy link</button></div>
           </form>
         </section>
-        <aside class="manage-card"><h2>Your saved links</h2><p class="status" id="list-status">Loading your links…</p><div class="link-list" id="link-list"></div><p class="status">Free creators can make up to 2 links. More links can be added with a future paid plan.</p></aside>
+        <aside class="manage-card"><h2>Your saved links</h2><p class="status" id="list-status">Loading your links…</p><div class="link-list" id="link-list"></div><div class="paid-plan-note" id="paid-plan-note" hidden><strong>Want more date pages?</strong><br>Our paid plan is currently under development. You’ll be able to add more links here soon 💘</div><p class="status">Free creators can make up to 2 links.</p></aside>
       </div>
     </main>
     <footer class="site-footer"><a href="/landing">How it works</a> · <a href="/">Home</a></footer>

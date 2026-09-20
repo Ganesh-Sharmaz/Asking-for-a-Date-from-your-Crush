@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /create
+Disallow: /manage
 
 Sitemap: https://asking-for-a-date-from-your-crush.vercel.app/sitemap.xml

@@ -15,7 +15,7 @@ const defaults = {
   noText: 'No',
   finalText: 'Yayyyyyyyy!!! Finally',
   finalButtonText: "Let's Fix a date",
-  dialCode: '+91'
+  dialCode: '91'
 };
 
 function clean(value, fallback, maxLength) {
@@ -31,13 +31,13 @@ function validate(body) {
   const noText = clean(input.noText, defaults.noText, 40);
   const finalText = clean(input.finalText, defaults.finalText, 180);
   const finalButtonText = clean(input.finalButtonText, defaults.finalButtonText, 50);
-  const dialCode = clean(input.dialCode, defaults.dialCode, 5).replace(/\s/g, '');
-  const phone = clean(input.phone, '', 15).replace(/\D/g, '');
+  const dialCode = clean(input.dialCode, defaults.dialCode, 4);
+  const phone = clean(input.phone, '', 15);
 
-  if (!/^\+?\d{1,4}$/.test(dialCode)) throw new Error('Enter a valid country dial code, such as +91.');
+  if (!/^\d{1,4}$/.test(dialCode)) throw new Error('Country dial code must contain digits only, such as 91.');
   if (!/^\d{6,15}$/.test(phone)) throw new Error('Enter a valid phone number using digits only.');
 
-  return { name, question, yesText, noText, finalText, finalButtonText, dialCode, phone };
+  return { name, question, yesText, noText, finalText, finalButtonText, dialCode: `+${dialCode}`, phone };
 }
 
 async function createUniqueLink(db, ownerId, data) {
