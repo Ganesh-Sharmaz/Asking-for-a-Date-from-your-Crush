@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/landing", "destination": "/landing.html" },
+    { "source": "/create", "destination": "/create.html" },
+    { "source": "/manage", "destination": "/create.html" },
+    { "source": "/:slug(d-[a-z0-9]+)", "destination": "/date.html?slug=:slug" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
+}

@@ -19,6 +19,24 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull r
 
 Please also review the [Code of Conduct](CODE_OF_CONDUCT.md), [Security Policy](SECURITY.md), and [MIT License](LICENSE).
 
+## Create personalized date pages
+
+- Landing page: `/landing`
+- Date page builder and creator dashboard: `/create`
+- Generated public links use the `/d-xxxxxxxxxx` format.
+
+The builder allows two free links per browser creator. The creator cookie is `HttpOnly` and is checked server-side for listing, editing, and deleting links. Generated links remain publicly readable so the person receiving a link can open it without an account.
+
+### Firebase and Vercel setup
+
+The API uses the Firebase Admin SDK, so the service-account credentials must never be placed in client-side JavaScript. Copy `.env.example` to `.env` for local development, or add these variables to Vercel Project Settings → Environment Variables:
+
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_CLIENT_EMAIL`
+- `FIREBASE_PRIVATE_KEY`
+
+Deploy `firestore.rules` before using the builder. The rules intentionally deny direct browser access; the Vercel API uses the Admin SDK on the server.
+
 ![Date6](https://github.com/Ganesh-Sharmaz/Date/assets/151487165/6072ce08-9e9a-4d60-8adc-1eb5e86ac17c)
 
 

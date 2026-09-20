@@ -1,0 +1,12 @@
+{
+  "name": "asking-for-a-date-from-your-crush",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Create playful, personalized date invitation pages.",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "firebase-admin": "^14.4.0"
+  }
+}
