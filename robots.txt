@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asking-for-a-date-from-your-crush.vercel.app/sitemap.xml
