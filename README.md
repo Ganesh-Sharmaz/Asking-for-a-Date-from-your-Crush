@@ -52,8 +52,15 @@ The API uses the Firebase Admin SDK, so the service-account credentials must nev
 - `FIREBASE_PROJECT_ID`
 - `FIREBASE_CLIENT_EMAIL`
 - `FIREBASE_PRIVATE_KEY`
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+- `ADMIN_SESSION_SECRET`
 
 Deploy `firestore.rules` before using the builder. The rules intentionally deny direct browser access; the Vercel API uses the Admin SDK on the server.
+
+### Private admin dashboard
+
+The owner dashboard is available at `/admin`. It requires the username and password configured in Vercel and uses a signed, `HttpOnly` session cookie. It shows saved creator data, links, page views, Yes clicks, WhatsApp clicks, daily activity, and quick link removal controls. Never put the admin credentials in frontend files or commit them to Git.
 
 ![Date6](https://github.com/Ganesh-Sharmaz/Date/assets/151487165/6072ce08-9e9a-4d60-8adc-1eb5e86ac17c)
 

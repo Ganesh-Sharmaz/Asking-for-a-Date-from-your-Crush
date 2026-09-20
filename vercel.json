@@ -3,6 +3,7 @@
     { "source": "/landing", "destination": "/landing.html" },
     { "source": "/create", "destination": "/create.html" },
     { "source": "/manage", "destination": "/create.html" },
+    { "source": "/admin", "destination": "/admin.html" },
     { "source": "/:slug(d-[a-z0-9]+)", "destination": "/date.html?slug=:slug" }
   ],
   "headers": [

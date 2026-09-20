@@ -1,30 +1,10 @@
 fetch('/api/visitor', { credentials: 'same-origin' }).catch(() => {});
 
 if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-  let promo;
-  let promoTimer;
-
-  const showPromo = () => {
-    if (promo && document.body.contains(promo)) return;
-    promo = document.createElement('aside');
-    promo.className = 'base-promo';
-    promo.innerHTML = '<p><strong>Have a question for someone?</strong><br>Make a cute page of your own.</p><a class="button" href="/landing">See how</a><button type="button" aria-label="Close">\u00d7</button>';
-    const dismissPromo = () => {
-      promo.remove();
-      clearTimeout(promoTimer);
-      promoTimer = setTimeout(showPromo, 10000);
-    };
-    promo.querySelector('button').addEventListener('click', dismissPromo);
-    document.body.append(promo);
-    promoTimer = setTimeout(() => {
-      if (document.body.contains(promo)) {
-        promo.remove();
-        promoTimer = setTimeout(showPromo, 10000);
-      }
-    }, 10000);
-  };
-
-  showPromo();
+  const promo = document.createElement('aside');
+  promo.className = 'base-promo';
+  promo.innerHTML = '<p><strong>Have a question for someone?</strong><br>Make a cute page of your own.</p><div class="promo-actions"><a class="button secondary" href="/landing">Landing page</a><a class="button" href="/create">Create your own page</a></div>';
+  document.body.append(promo);
 
   const modal = document.createElement('div');
   modal.className = 'welcome-modal';

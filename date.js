@@ -11,6 +11,10 @@ let noIsEscaping = false;
 let lastNoMove = 0;
 let noAnimationFrame = null;
 
+function track(event) {
+  fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ slug, event }) }).catch(() => {});
+}
+
 function showError(message) {
   loading.textContent = message;
 }
@@ -80,6 +84,7 @@ function showFinal(link) {
   finalText.textContent = link.finalText;
   fix.textContent = link.finalButtonText;
   fix.onclick = () => {
+    track('whatsapp_click');
     window.location.href = `https://wa.me/${link.dialCode.replace(/\D/g, '')}${link.phone}?text=${encodeURIComponent(link.finalText)}`;
   };
 }
@@ -97,7 +102,8 @@ async function load() {
     container.hidden = false;
     loading.hidden = true;
 
-    yes.addEventListener('click', () => showFinal(link));
+    track('page_view');
+    yes.addEventListener('click', () => { track('yes_click'); showFinal(link); });
     no.addEventListener('click', (event) => {
       noIsEscaping = true;
       moveNoButton(event.clientX, event.clientY, true);

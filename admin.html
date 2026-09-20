@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
+  <link rel="stylesheet" href="/site.css">
+  <title>Admin dashboard | Ask Your Crush</title>
+</head>
+<body>
+  <div class="site-wrap admin-wrap">
+    <header class="site-nav"><a class="brand" href="/"><span class="brand-mark">💌</span><span>Ask Your Crush Admin</span></a><a class="button secondary" href="/">View site</a></header>
+    <main>
+      <section class="admin-login" id="admin-login"><div class="form-card"><p class="eyebrow">Private area</p><h1>Welcome back.</h1><p>Use the credentials stored in Vercel Environment Variables.</p><form id="admin-login-form"><div class="field"><label for="admin-username">Username</label><input id="admin-username" name="username" autocomplete="username" required></div><div class="field"><label for="admin-password">Password</label><input id="admin-password" name="password" type="password" autocomplete="current-password" required></div><button class="button" type="submit">Sign in</button><p class="status" id="login-status" role="alert"></p></form></div></section>
+      <section class="admin-dashboard" id="admin-dashboard" hidden><div class="admin-heading"><div><p class="eyebrow">Private dashboard</p><h1>See what’s happening.</h1></div><button class="button secondary" id="logout-button" type="button">Log out</button></div><div class="metric-grid" id="metric-grid"></div><div class="admin-grid"><section class="manage-card"><div class="admin-section-heading"><h2>All created links</h2><button class="mini-button" id="refresh-button" type="button">Refresh</button></div><p class="status" id="admin-link-status"></p><div class="admin-links" id="admin-links"></div></section><section class="manage-card"><h2>Growth</h2><p class="status">Events recorded by day.</p><div class="growth-list" id="growth-list"></div></section></div></section>
+    </main>
+    <footer class="site-footer">Admin access is protected by a server-side signed session.</footer>
+  </div>
+  <script type="module" src="/admin.js"></script>
+</body>
+</html>

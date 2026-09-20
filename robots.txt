@@ -3,5 +3,6 @@ Allow: /
 Disallow: /api/
 Disallow: /create
 Disallow: /manage
+Disallow: /admin
 
 Sitemap: https://asking-for-a-date-from-your-crush.vercel.app/sitemap.xml

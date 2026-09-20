@@ -20,3 +20,7 @@ Please allow reasonable time for investigation and a fix before publicly disclos
 ## Scope
 
 Reports about third-party assets, external services, browsers, or GitHub should also be reported to their respective maintainers. This project does not guarantee the behavior, availability, or security of external URLs embedded in the page.
+
+## Admin dashboard
+
+The private dashboard at `/admin` is protected by `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `ADMIN_SESSION_SECRET` environment variables. Keep these values only in Vercel Environment Variables or a local untracked `.env` file. Rotate them immediately if they are exposed.
