@@ -11,6 +11,8 @@
     <meta name="theme-color" content="#ffd6e7">
     <title>Ask Your Crush on a Date 💘</title>
     <link rel="canonical" href="https://asking-for-a-date-from-your-crush.vercel.app/">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
@@ -234,7 +236,251 @@ body, html{
 }
 
     
-    </style>
+    /* Refined responsive layout and interaction polish */
+    html{
+        min-height: 100%;
+    }
+
+    body{
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding: clamp(1rem, 4vw, 3rem);
+        overflow-x: hidden;
+    }
+
+    .container,
+    .confirmation{
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: min(100%, 620px);
+        height: auto;
+        margin: auto;
+        padding: clamp(1.25rem, 4vw, 2.5rem);
+        border: 1px solid rgba(255, 255, 255, 0.58);
+        border-radius: 2rem;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 241, 248, 0.16));
+        box-shadow: 0 24px 60px rgba(76, 92, 125, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(0.75rem, 2.5vw, 1.5rem);
+    }
+
+    .container h1,
+    .confirmation h1{
+        font-family: 'Bellota Text', sans-serif;
+        max-width: 12ch;
+        margin: 0;
+        font-style: italic;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        color: #321d2b;
+        text-shadow: 0 4px 10px rgba(255, 255, 255, 0.72), 0 5px 12px rgba(147, 77, 77, 0.28);
+    }
+
+    .gif,
+    .fix-gif{
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        margin: 0;
+    }
+
+    .gifimg,
+    .fix-gifimg{
+        width: min(100%, 384px);
+        height: auto;
+        aspect-ratio: 384 / 254;
+        border-radius: 18px;
+        background-position: center;
+        box-shadow: 0 16px 32px rgba(56, 76, 103, 0.25), 0 0 0 5px rgba(255, 255, 255, 0.2);
+        transition: transform 240ms ease, box-shadow 240ms ease;
+    }
+
+    .gifimg:hover,
+    .fix-gifimg:hover{
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 18px 34px rgba(56, 76, 103, 0.26);
+    }
+
+    .answer-box{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        gap: clamp(1.25rem, 8vw, 5rem);
+        padding: 0.25rem 0;
+        margin: 0;
+    }
+
+    .answer,
+    #fix{
+        font-family: 'Bellota Text', sans-serif;
+        font-style: italic;
+        width: clamp(6.5rem, 22vw, 8.5rem);
+        min-height: 3.5rem;
+        height: auto;
+        padding: 0.45rem 0.8rem;
+        position: relative;
+        isolation: isolate;
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        border-radius: 999px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 231, 241, 0.55));
+        color: #4b263a;
+        font-size: clamp(1.35rem, 3vw, 2rem);
+        font-weight: 550;
+        line-height: 1;
+        padding-left: 2rem;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: 0 8px 0 rgba(146, 85, 111, 0.2), 0 12px 22px rgba(76, 92, 125, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .answer::before,
+    #fix::before{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: system-ui, sans-serif;
+        font-size: 0.9em;
+        line-height: 1;
+        opacity: 0.86;
+    }
+
+    #yes{
+        background: linear-gradient(145deg, #fffdf2, #ffd4e5);
+    }
+
+    #yes::before{
+        content: "♡";
+        left: 0.7rem;
+    }
+
+    #no{
+        background: linear-gradient(145deg, #f5fbff, #d8edff);
+    }
+
+    #no::before{
+        content: "☁";
+        left: 0.7rem;
+    }
+
+    #fix{
+        width: min(100%, 18rem);
+        background: linear-gradient(145deg, #fffdf2, #ffc9df);
+    }
+
+    #fix::before{
+        content: "♡";
+        left: 1rem;
+    }
+
+    /* Encoding-safe fallbacks for the button decorations. */
+    #yes::before{ content: "\2661"; }
+    #no::before{ content: "\2601"; }
+    #fix::before{ content: "\2661"; }
+
+    .answer:hover,
+    .answer:focus-visible,
+    #fix:hover,
+    #fix:focus-visible{
+        background: linear-gradient(145deg, #fff, #ffe2ed);
+        box-shadow: 0 11px 0 rgba(146, 85, 111, 0.17), 0 18px 26px rgba(76, 92, 125, 0.22), inset 0 1px 0 #fff;
+        transform: translateY(-4px) rotate(-1deg);
+    }
+
+    .answer:active,
+    #fix:active{
+        box-shadow: 0 3px 0 rgba(146, 85, 111, 0.18), 0 7px 12px rgba(76, 92, 125, 0.16);
+        transform: translateY(4px) scale(0.97);
+    }
+
+    #no{
+        position: relative;
+        will-change: top, left;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    #fix{
+        margin-top: 1rem;
+    }
+
+    .confirmation{
+        text-align: center;
+        animation: confirmation-in 420ms ease both;
+    }
+
+    @keyframes confirmation-in{
+        from{
+            opacity: 0;
+            transform: translateY(14px) scale(0.98);
+        }
+        to{
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @media (max-width: 600px){
+        body{
+            padding: 1.25rem 1rem;
+        }
+
+        .container,
+        .confirmation{
+            width: 100%;
+            border-radius: 1.5rem;
+            padding: 1.25rem 0.9rem 1.5rem;
+        }
+
+        .container h1,
+        .confirmation h1{
+            max-width: 13ch;
+            font-size: clamp(2rem, 10vw, 3rem);
+        }
+
+        .gifimg,
+        .fix-gifimg{
+            width: min(100%, 340px);
+        }
+
+        .answer-box{
+            gap: clamp(0.75rem, 8vw, 2rem);
+        }
+
+        .answer,
+        #fix{
+            min-height: 3.25rem;
+            font-size: clamp(1.2rem, 6vw, 1.65rem);
+        }
+
+        .answer::before,
+        #fix::before{
+            font-size: 0.78em;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+        *,
+        *::before,
+        *::after{
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -272,25 +518,119 @@ body, html{
 const no = document.querySelector("#no");
 const confirmation = document.querySelector(".confirmation");
 const container = document.querySelector(".container");
+let noIsEscaping = false;
+let lastNoMove = 0;
+let noAnimationFrame = null;
 
-yesAnswerMethod = () => {
-    container.style.display = 'none'
-    confirmation.style.display = 'block'
-}
+const yesAnswerMethod = () => {
+    container.style.display = 'none';
+    confirmation.style.display = 'block';
+};
 
-noAnswerMethod = () => {
-    no.style.position = 'absolute'
+const moveNoButton = (pointerX = null, pointerY = null, snap = false) => {
+    no.style.position = 'absolute';
 
-    xPosition = Math.floor(Math.random() * container.clientWidth)
-    yPosition = Math.floor(Math.random() * container.clientHeight)
+    const containerRect = container.getBoundingClientRect();
+    const maxX = Math.max(0, container.clientWidth - no.offsetWidth);
+    const maxY = Math.max(0, container.clientHeight - no.offsetHeight);
+    let xPosition = 0;
+    let yPosition = 0;
 
-    no.style.top = `${yPosition}px`
-    no.style.left = `${xPosition}px`
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+        const candidateX = Math.floor(Math.random() * (maxX + 1));
+        const candidateY = Math.floor(Math.random() * (maxY + 1));
+        const candidateCenterX = containerRect.left + candidateX + no.offsetWidth / 2;
+        const candidateCenterY = containerRect.top + candidateY + no.offsetHeight / 2;
+        const distanceFromPointer = pointerX === null ? Infinity : Math.hypot(
+            candidateCenterX - pointerX,
+            candidateCenterY - pointerY
+        );
 
-}
+        xPosition = candidateX;
+        yPosition = candidateY;
 
-no.addEventListener('click', noAnswerMethod)
-yes.addEventListener('click', yesAnswerMethod)
+        if (distanceFromPointer > 140) {
+            break;
+        }
+    }
+
+    const startX = Number.parseFloat(no.style.left) || no.offsetLeft || 0;
+    const startY = Number.parseFloat(no.style.top) || no.offsetTop || 0;
+    const isArched = Math.random() > 0.45;
+    const midpointX = (startX + xPosition) / 2;
+    const midpointY = (startY + yPosition) / 2;
+    const direction = Math.random() > 0.5 ? 1 : -1;
+    const curveAmount = isArched ? (70 + Math.random() * 90) * direction : 0;
+    const controlX = Math.min(maxX, Math.max(0, midpointX - curveAmount));
+    const controlY = Math.min(maxY, Math.max(0, midpointY + curveAmount * 0.55));
+    const duration = 650 + Math.random() * 350;
+    const startTime = performance.now();
+
+    if (snap) {
+        no.style.left = `${xPosition}px`;
+        no.style.top = `${yPosition}px`;
+        return;
+    }
+
+    if (noAnimationFrame !== null) {
+        cancelAnimationFrame(noAnimationFrame);
+    }
+
+    const animate = (currentTime) => {
+        const progress = Math.min(1, (currentTime - startTime) / duration);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        const inverseProgress = 1 - easedProgress;
+        const currentX = inverseProgress * inverseProgress * startX
+            + 2 * inverseProgress * easedProgress * controlX
+            + easedProgress * easedProgress * xPosition;
+        const currentY = inverseProgress * inverseProgress * startY
+            + 2 * inverseProgress * easedProgress * controlY
+            + easedProgress * easedProgress * yPosition;
+
+        no.style.left = `${currentX}px`;
+        no.style.top = `${currentY}px`;
+
+        if (progress < 1) {
+            noAnimationFrame = requestAnimationFrame(animate);
+        } else {
+            noAnimationFrame = null;
+        }
+    };
+
+    noAnimationFrame = requestAnimationFrame(animate);
+};
+
+const noAnswerMethod = (event) => {
+    noIsEscaping = true;
+    moveNoButton(event.clientX, event.clientY, true);
+};
+
+const repelNoButton = (event) => {
+    if (!noIsEscaping || Date.now() - lastNoMove < 280) {
+        return;
+    }
+
+    const noRect = no.getBoundingClientRect();
+    const distanceToButton = Math.hypot(
+        event.clientX - (noRect.left + noRect.width / 2),
+        event.clientY - (noRect.top + noRect.height / 2)
+    );
+
+    if (distanceToButton < 150) {
+        lastNoMove = Date.now();
+        moveNoButton(event.clientX, event.clientY);
+    }
+};
+
+no.addEventListener('click', noAnswerMethod);
+no.addEventListener('pointerenter', (event) => {
+    if (noIsEscaping) {
+        lastNoMove = Date.now();
+        moveNoButton(event.clientX, event.clientY);
+    }
+});
+document.addEventListener('pointermove', repelNoButton);
+yes.addEventListener('click', yesAnswerMethod);
 
 document.getElementById("fix").addEventListener("click", function(){
     window.location= "https://wa.me/+918802130983?text=Chalo date pr chalein !!!!! ";
