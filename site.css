@@ -96,15 +96,17 @@ h1, h2 { font-family: 'Bellota Text', Georgia, serif; font-style: italic; }
 .mini-button { border: 1px solid var(--line); border-radius: 999px; padding: .45rem .7rem; background: #fff; color: var(--pink-dark); font: 700 .76rem Poppins, sans-serif; cursor: pointer; }
 .date-page { display: grid; place-items: center; min-height: 100vh; padding: 1rem; }
 .date-card { width: min(100%, 620px); padding: clamp(1.4rem, 5vw, 3rem); border: 1px solid rgba(255,255,255,.8); border-radius: 2rem; background: rgba(255,255,255,.68); box-shadow: var(--shadow); text-align: center; backdrop-filter: blur(8px); }
-.date-card h1 { margin: .6rem auto 1.2rem; font: italic 700 clamp(2.5rem, 7vw, 5rem) 'Bellota Text', serif; line-height: 1; }
+.date-card h1 { max-width: 12ch; margin: .6rem auto 1.2rem; font: italic 700 clamp(2rem, 5vw, 4rem) 'Bellota Text', serif; line-height: 1.08; }
 .date-message { margin: 0 auto 1.4rem; max-width: 28rem; color: var(--muted); font: italic 1.35rem/1.5 'Bellota Text', serif; }
 .date-art { margin: 0 auto 1.4rem; font-size: clamp(4rem, 15vw, 7rem); animation: float 3.5s ease-in-out infinite; }
+.date-gif, .final-gif { width: min(100%, 384px); aspect-ratio: 384 / 254; margin: 0 auto 1.4rem; border-radius: 1.1rem; background: center / cover no-repeat url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif"); box-shadow: 0 16px 32px rgba(56, 76, 103, .2); }
+.final-gif { aspect-ratio: 384 / 216; background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif"); }
 .date-actions { position: relative; display: flex; justify-content: center; gap: 1rem; min-height: 4rem; }
 .date-actions .button { min-width: 8rem; }
 .date-actions .no-button { background: linear-gradient(135deg, #e5f5ff, #c8e8ff); color: #38617a; box-shadow: none; }
 .final-state { display: none; }
 .final-state.visible { display: block; animation: confirmation-in .4s ease both; }
-.final-state h2 { margin: .5rem 0 1rem; font-size: clamp(2.5rem, 7vw, 5rem); }
+.final-state h2 { max-width: 12ch; margin: .5rem auto 1rem; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.08; }
 .loading { color: var(--muted); text-align: center; }
 .base-promo { position: fixed; z-index: 20; right: 1rem; bottom: 1rem; display: flex; align-items: center; gap: .8rem; max-width: 360px; padding: .8rem 1rem; border: 1px solid rgba(255,255,255,.8); border-radius: 1rem; background: rgba(255,255,255,.84); box-shadow: var(--shadow); backdrop-filter: blur(10px); }
 .base-promo p { margin: 0; font-size: .78rem; line-height: 1.35; }

@@ -13,8 +13,9 @@ function render(link) {
   const title = document.createElement('h1');
   title.textContent = link.question;
   const art = document.createElement('div');
-  art.className = 'date-art';
-  art.textContent = '💌';
+  art.className = 'date-gif';
+  art.setAttribute('role', 'img');
+  art.setAttribute('aria-label', 'A cute bear waiting for a reply');
   const actions = document.createElement('div');
   actions.className = 'date-actions';
   const yes = document.createElement('button');
@@ -26,13 +27,17 @@ function render(link) {
   actions.append(yes, no);
   const final = document.createElement('div');
   final.className = 'final-state';
+  const finalArt = document.createElement('div');
+  finalArt.className = 'final-gif';
+  finalArt.setAttribute('role', 'img');
+  finalArt.setAttribute('aria-label', 'A celebratory dessert animation');
   const finalTitle = document.createElement('h2');
   finalTitle.textContent = link.finalText;
   const finalButton = document.createElement('a');
   finalButton.className = 'button';
   finalButton.textContent = link.finalButtonText;
   finalButton.href = `https://wa.me/${link.dialCode.replace(/\D/g, '')}${link.phone}?text=${encodeURIComponent(link.finalText)}`;
-  final.append(finalTitle, finalButton);
+  final.append(finalArt, finalTitle, finalButton);
   card.append(eyebrow, title, art, actions, final);
 
   let escaped = false;
@@ -48,7 +53,13 @@ function render(link) {
   };
   no.addEventListener('click', moveNo);
   no.addEventListener('pointerenter', (event) => { if (escaped) moveNo(event); });
-  yes.addEventListener('click', () => { actions.style.display = 'none'; art.style.display = 'none'; final.classList.add('visible'); });
+  yes.addEventListener('click', () => {
+    eyebrow.style.display = 'none';
+    title.style.display = 'none';
+    art.style.display = 'none';
+    actions.style.display = 'none';
+    final.classList.add('visible');
+  });
 }
 
 async function load() {
