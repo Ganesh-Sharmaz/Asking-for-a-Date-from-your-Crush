@@ -7,11 +7,17 @@ We cannot guarantee that this landing page will result in a successful date or r
 
 ## Installation
 
-Download the Date folder in your system and open the Date.html file in your browser
+Clone or download this repository and open `index.html` in your browser.
 
 ## Configurations to the code
 
-Open the Date.html file in VScode and enter your own number in the code otherwise it will direct your crush's message to me x)
+Open `index.html` in VS Code and enter your own number in the code. Otherwise, the message may be sent to the maintainer's number.
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request. For anything beyond a small documentation or typo fix, open an issue first and wait for the proposal to be acknowledged. Pull requests without enough context, testing details, or a related issue may be closed and asked to be resubmitted.
+
+Please also review the [Code of Conduct](CODE_OF_CONDUCT.md), [Security Policy](SECURITY.md), and [MIT License](LICENSE).
 
 ![Date6](https://github.com/Ganesh-Sharmaz/Date/assets/151487165/6072ce08-9e9a-4d60-8adc-1eb5e86ac17c)
 

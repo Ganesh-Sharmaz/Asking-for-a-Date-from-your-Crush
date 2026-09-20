@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Ganesh-Sharmaz/Asking-for-a-Date-from-your-Crush/security
+    about: Please report security issues privately. Do not use a public issue.
